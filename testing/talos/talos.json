@@ -1,0 +1,75 @@
+{
+    "suites": {
+        "bcv": {
+            "tests": ["basic_compositor_video"]
+        },
+        "chromez": {
+            "tests": ["about_preferences_basic", "tresize"]
+        },
+        "dromaeojs": {
+            "tests": ["dromaeo_css", "kraken"]
+        },
+        "flex": {
+            "tests": ["tart_flex", "ts_paint_flex"]
+        },
+        "other": {
+            "tests": ["a11yr", "ts_paint", "twinopen", "sessionrestore", "sessionrestore_no_auto_restore", "tabpaint", "cpstartup", "startup_about_home_paint"]
+        },
+        "sessionrestore-many-windows": {
+            "tests": ["sessionrestore_many_windows"]
+        },
+        "g1": {
+            "tests": ["tp5o_scroll", "glterrain"],
+            "pagesets_name": "tp5n.zip"
+        },
+        "damp": {
+            "tests": ["damp"],
+            "pagesets_name": "tp5n.zip"
+        },
+        "tabswitch": {
+            "tests": ["tabswitch"],
+            "pagesets_name": "tp5n.zip"
+        },
+        "g3": {
+            "tests": ["dromaeo_dom"]
+        },
+        "g4": {
+            "tests": ["glvideo", "displaylist_mutate", "rasterflood_svg", "rasterflood_gradient"]
+        },
+        "g5": {
+            "tests": ["ts_paint_webext", "tp5o_webext"],
+            "pagesets_name": "tp5n.zip"
+        },
+        "motionmark": {
+            "tests": ["motionmark_animometer", "motionmark_htmlsuite", "JetStream", "ARES6"],
+            "benchmark_zip": "jetstream.zip"
+        },
+        "svgr": {
+            "tests": ["tsvgx", "tsvgr_opacity", "tart", "tscrollx", "tsvg_static"]
+        },
+        "perf-reftest": {
+            "tests": ["perf_reftest"]
+        },
+        "perf-reftest-singletons": {
+            "tests": ["perf_reftest_singletons"]
+        },
+        "speedometer": {
+            "tests": ["speedometer", "stylebench"]
+        },
+        "tp5o": {
+            "tests": ["tp5o"],
+            "pagesets_name": "tp5n.zip"
+        },
+        "xperf": {
+            "tests": ["tp5n"],
+            "pagesets_name": "tp5n.zip",
+            "talos_options": [
+                "--xperf_path",
+                "\"c:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/xperf.exe\""
+            ]
+        },
+        "h1": {
+            "tests": ["ts_paint_heavy"]
+        }
+    }
+}

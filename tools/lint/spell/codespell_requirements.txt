@@ -1,0 +1,2 @@
+codespell==1.15.0 \
+    --hash=sha256:8f1bc15ca4322b72213b1cf13eb437b3c3956e0f423ab414d294d7e77e0e4130

@@ -1,0 +1,51 @@
+---
+py2:
+    description: Python 2 compatibility check
+    include: ['.']
+    exclude:
+        - build
+        - client.py
+        - config
+        - configure.py
+        - dom
+        - editor
+        - gfx
+        - ipc
+        - js/src
+        - js/xpconnect
+        - layout
+        - media
+        - mobile
+        - modules
+        - mozglue
+        - netwerk
+        - nsprpub
+        - other-licenses
+        - python/devtools
+        - security
+        - servo
+        - taskcluster/docker/funsize-update-generator
+        - testing/awsy
+        - testing/gtest
+        - testing/mochitest
+        - testing/mozharness
+        - testing/raptor
+        - testing/runtimes
+        - testing/tools
+        - testing/tps
+        - testing/web-platform
+        - toolkit
+        - tools/docs
+        - tools/jprof/split-profile.py
+        - tools/lint
+        - tools/mach_commands.py
+        - tools/profiler
+        - tools/rb
+        - tools/update-packaging
+        - xpcom
+    extensions: ['py']
+    support-files:
+        - 'tools/lint/python/*compat*'
+    type: external
+    payload: python.compat:lintpy2
+    setup: python.compat:setuppy2

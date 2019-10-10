@@ -1,0 +1,5 @@
+commit df1a1c75b785192a6ee9ab46a862cb83aaed037a
+Author: Alexey Shvayka <shvaikalesh@gmail.com>
+Date:   Wed Jun 19 23:39:21 2019 +0300
+
+    Remove trailing spaces from YAML blocks (#2201)
