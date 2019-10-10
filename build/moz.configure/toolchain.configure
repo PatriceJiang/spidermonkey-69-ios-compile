@@ -530,8 +530,11 @@ def check_compiler(compiler, language, target):
 
     flags = []
 
-    log.warning(">>--------------------------------------------------------")
+    log.warning(">>[1]--------------------------------------------------------")
+    log.warning("compiler: %s",compiler)
+    log.warning("language: %s",language)
     log.warning("target: %s",target)
+    log.warning("info: %s", info)
     log.warning("<<--------------------------------------------------------")
 
     # Check language standards
@@ -568,7 +571,8 @@ def check_compiler(compiler, language, target):
     if info.type == 'clang':
         if not info.kernel or info.kernel != target.kernel or \
                 not info.endianness or info.endianness != target.endianness:
-            flags.append('--target=%s' % target.toolchain)
+            #flags.append('--target=%s' % target.toolchain)
+            #flags.append('--target=%s' % ('arm64'))
             has_target = True
 
         # Add target flag when there is an OS mismatch (e.g. building for Android on
@@ -576,7 +580,8 @@ def check_compiler(compiler, language, target):
         # keep things the same on other platforms.
         elif target.os in OS_preprocessor_checks and (
                 not info.os or info.os != target.os):
-            flags.append('--target=%s' % target.toolchain)
+            #flags.append('--target=%s' % target.toolchain)
+            #flags.append('--target=%s' % ('aarch64'))
             has_target = True
 
     if not has_target and (not info.cpu or info.cpu != target.cpu):
@@ -589,7 +594,20 @@ def check_compiler(compiler, language, target):
             # clang-cl uses a different name for this target
             flags.append('--target=aarch64-windows-msvc')
         elif info.type == 'clang':
-            flags.append('--target=%s' % target.toolchain)
+            log.warning(">> add target %s"%(target.toolchain))
+            #flags.append('--target=%s' % target.cpu)
+            flags.append('-arch')
+            if target.cpu == "aarch64":
+                flags.append('%s' % "arm64")
+            elif target.toolchain == "armv7-ios":
+                flags.append('%s' % "armv7")
+            else:
+                flags.append('%s' % "armv7s")
+
+    log.warning(">>[2]--------------------------------------------------------")
+    log.warning("flags: %s",flags)
+    log.warning("info: %s", info)
+    log.warning("<<--------------------------------------------------------")
 
     return namespace(
         type=info.type,
@@ -2168,11 +2186,11 @@ set_config('LINKER_KIND', select_linker.KIND)
 @depends_if(select_linker, macos_sdk)
 def linker_ldflags(linker, macos_sdk):
     flags = list(linker.LINKER_FLAG or [])
-    if macos_sdk:
-        if linker.KIND == 'ld64':
-            flags.append('-Wl,-syslibroot,%s' % macos_sdk)
-        else:
-            flags.append('-Wl,--sysroot=%s' % macos_sdk)
+    #if macos_sdk:
+    #    if linker.KIND == 'ld64':
+            #flags.append('-Wl,-syslibroot,%s' % macos_sdk)
+    #    else:
+            #flags.append('-Wl,--sysroot=%s' % macos_sdk)
 
     return flags
 

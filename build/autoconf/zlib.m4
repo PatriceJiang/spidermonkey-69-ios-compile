@@ -19,12 +19,19 @@ if test -z "$MOZ_ZLIB_LIBS$MOZ_ZLIB_CFLAGS$SKIP_LIBRARY_CHECKS"; then
     _SAVE_LDFLAGS=$LDFLAGS
     _SAVE_LIBS=$LIBS
 
+
     if test -n "${ZLIB_DIR}" -a "${ZLIB_DIR}" != "yes"; then
         MOZ_ZLIB_CFLAGS="-I${ZLIB_DIR}/include"
         MOZ_ZLIB_LIBS="-L${ZLIB_DIR}/lib"
         CFLAGS="$MOZ_ZLIB_CFLAGS $CFLAGS"
         LDFLAGS="$MOZ_ZLIB_LIBS $LDFLAGS"
     fi
+    echo ">>[4]--------------------------"
+    echo "ZLIBDIR: $ZLIB_DIR"
+    echo "MOZ_ZLIB_CFLAGS: $MOZ_ZLIB_CFLAGS"
+    echo "MOZ_ZLIB_LIBS: $MOZ_ZLIB_LIBS"
+    echo "<<-----------------------------"
+
     if test -z "$ZLIB_DIR" -o "$ZLIB_DIR" = no; then
         MOZ_SYSTEM_ZLIB=
     else
@@ -32,14 +39,18 @@ if test -z "$MOZ_ZLIB_LIBS$MOZ_ZLIB_CFLAGS$SKIP_LIBRARY_CHECKS"; then
             [MOZ_SYSTEM_ZLIB=])
         if test "$MOZ_SYSTEM_ZLIB" = 1; then
             MOZZLIBNUM=`echo $MOZZLIB | awk -F. changequote(<<, >>)'{printf "0x%x\n", (((<<$>>1 * 16 + <<$>>2) * 16) + <<$>>3) * 16 + <<$>>4}'changequote([, ])`
-            AC_TRY_COMPILE([ #include <stdio.h>
-                             #include <string.h>
-                             #include <zlib.h> ],
-                           [ #if ZLIB_VERNUM < $MOZZLIBNUM
-                             #error "Insufficient zlib version ($MOZZLIBNUM required)."
-                             #endif ],
-                           MOZ_SYSTEM_ZLIB=1,
-                           AC_MSG_ERROR([Insufficient zlib version for --with-system-zlib ($MOZZLIB required)]))
+            echo ">>[5]--------------------------"
+            echo "MOZZLIB: $MOZZLIB"
+            echo "MOZZLIBNUM: $MOZZLIBNUM"
+            echo "<<-----------------------------"
+            #AC_TRY_COMPILE([ #include <stdio.h>
+            #                 #include <string.h>
+            #                 #include <zlib.h> ],
+            #               [ #if ZLIB_VERNUM < $MOZZLIBNUM
+            #                 #error "Insufficient zlib version ($MOZZLIBNUM required)."
+            #                 #endif ],
+            #               MOZ_SYSTEM_ZLIB=1,
+            #               AC_MSG_ERROR([Insufficient zlib version for --with-system-zlib ($MOZZLIB required)]))
         fi
     fi
     CFLAGS=$_SAVE_CFLAGS

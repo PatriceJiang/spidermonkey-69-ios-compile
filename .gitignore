@@ -161,7 +161,8 @@ lextab.py
 !.vscode/extensions.json
 !.vscode/tasks.json
 
-js/src/build-ios/
+js/src/build-*/
 !js/src/build-ios/pt_build_ios.sh
 !js/src/build-ios/cc_link
 !js/src/build-ios/cxx_link
+!js/src/build-ios/link_mozglue.sh

@@ -350,6 +350,12 @@ struct macos_arm_context {
   arm_neon_state_t float_;
 };
 #    define CONTEXT macos_arm_context
+#  elif defined(__arm64__)
+struct macos_arm_context {
+  arm_thread_state_t thread;
+  arm_neon_state_t float_;
+};
+#    define CONTEXT macos_arm_context
 #  else
 #    error Unsupported architecture
 #  endif
@@ -365,7 +371,7 @@ struct macos_arm_context {
 #  define PC_sig(p) EIP_sig(p)
 #  define FP_sig(p) EBP_sig(p)
 #  define SP_sig(p) ESP_sig(p)
-#elif defined(__arm__)
+#elif defined(__arm__) || defined(__arm64__)
 #  define FP_sig(p) R11_sig(p)
 #  define SP_sig(p) R13_sig(p)
 #  define LR_sig(p) R14_sig(p)
@@ -810,7 +816,7 @@ static bool HandleMachException(const ExceptionRequest& request) {
   unsigned int float_state_count = x86_FLOAT_STATE_COUNT;
   int thread_state = x86_THREAD_STATE;
   int float_state = x86_FLOAT_STATE;
-#  elif defined(__arm__)
+#  elif defined(__arm__) || defined(__arm64__)
   unsigned int thread_state_count = ARM_THREAD_STATE_COUNT;
   unsigned int float_state_count = ARM_NEON_STATE_COUNT;
   int thread_state = ARM_THREAD_STATE;

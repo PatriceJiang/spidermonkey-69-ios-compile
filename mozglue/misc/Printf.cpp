@@ -546,8 +546,11 @@ static bool BuildArgArray(const char* fmt, va_list ap, NumArgStateVector& nas) {
     // earlier argument.
     MOZ_ASSERT(nas[cn].type != TYPE_UNKNOWN);
 
+#if defined(__ARM_ARCH_7S__) || defined(__ARM_ARCH_7A__)
+    nas[cn].ap = ap;
+#else
     VARARGS_ASSIGN(nas[cn].ap, ap);
-
+#endif
     switch (nas[cn].type) {
       case TYPE_SHORT:
       case TYPE_USHORT:

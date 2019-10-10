@@ -6,6 +6,9 @@
 
 FINAL_LIBRARY = 'mozglue'
 
+#FORCE_STATIC_LIB = True
+#STATIC_LIBRARY_NAME = 'mozglue'
+
 EXPORTS.mozilla += [
     'AutoProfilerLabel.h',
     'decimal/Decimal.h',

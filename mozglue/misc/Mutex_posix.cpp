@@ -145,7 +145,8 @@ bool mozilla::detail::MutexImpl::mutexTryLock() {
 }
 
 void mozilla::detail::MutexImpl::lock() {
-#ifndef XP_DARWIN
+//#ifndef XP_DARWIN
+#if 1
   mutexLock();
 #else
   // Mutex performance on OSX can be very poor if there's a lot of contention as
@@ -170,7 +171,9 @@ void mozilla::detail::MutexImpl::lock() {
         mutexLock();
         break;
       }
+      #if defined(__x86_64__) || defined(__i386__)
       asm("pause");  // Hint to the processor that we're spinning.
+      #endif
       count++;
     } while (!mutexTryLock());
 

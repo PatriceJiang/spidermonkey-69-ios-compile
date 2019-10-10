@@ -35,8 +35,24 @@ MOZ_ARG_ENABLE_STRING(ios-target,
                       [_IOS_TARGET=$enableval])
 _IOS_TARGET_DEFAULT=8.0
 
+echo ">>[3]-----------------------------"
+echo "target: $target"
+echo "<<--------------------------------"
 case "$target" in
 arm*-apple-darwin*)
+    if test -z "$ios_sdk" -o "$ios_sdk" = "yes"; then
+       ios_sdk=iphoneos
+    fi
+    case "$ios_sdk" in
+         iphoneos*)
+                ios_target_arg="-miphoneos-version-min"
+                ;;
+         *)
+                AC_MSG_ERROR([Only 'iphoneos' SDKs are valid when targeting iOS device, don't know what to do with '$ios_sdk'.])
+                ;;
+    esac
+    ;;
+aarch64-apple-darwin*)
     if test -z "$ios_sdk" -o "$ios_sdk" = "yes"; then
        ios_sdk=iphoneos
     fi
@@ -83,6 +99,9 @@ if test -n "$ios_sdk"; then
    export HOST_CXX=clang++
    # Add isysroot, arch, and ios target arguments
    case "$target_cpu" in
+        aarch64*)
+                ARGS="-arch arm64"
+                ;;
         arm*)
                 ARGS="-arch armv7"
                 ;;
