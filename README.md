@@ -1,7 +1,13 @@
 
 # how to use
 
+## compare changes 
+
+view [changes](https://github.com/PatriceJiang/spidermonkey-69-ios-compile/compare/f909feaa59c4afbb36b09ef9a4e490682e5ddc43...master)
+
 ## prepare enviroment
+
+ref official documents
 
 ## run build script
 
