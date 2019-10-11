@@ -4,11 +4,7 @@
 
 set -x
 
-#IPHONE_SDK=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk
-#IPHONE_SDK=yes
 IPHONE_SDK=iphoneos
-
-#MAC_SDK=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk
 
 arg_arch=$1
 
@@ -28,8 +24,14 @@ else
 fi
 
 
-PT_CC=/Users/cocos/Downloads/firefox-69.0/js/src/build-ios/cc_link
-PT_CXX=/Users/cocos/Downloads/firefox-69.0/js/src/build-ios/cxx_link
+#pwd="$(dirname ${BASH_SOURCE[0]})"
+pwd=`pwd`
+
+#PT_CC=/Users/cocos/Downloads/firefox-69.0/js/src/build-ios/cc_link
+#PT_CXX=/Users/cocos/Downloads/firefox-69.0/js/src/build-ios/cxx_link
+
+PT_CC=$pwd/cc_link
+PT_CXX=$pwd/cxx_link
 
 
 #PT_DISABLE_JIT="--disable-jm --disable-methodjit --disable-monoic --disable-polyic"
