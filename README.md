@@ -1,17 +1,19 @@
 
-# how to use
+# HOW TO BUILD
 
-## compare changes 
+## View changes 
 
-view [changes](https://github.com/PatriceJiang/spidermonkey-69-ios-compile/compare/f909feaa59c4afbb36b09ef9a4e490682e5ddc43...master)
+View [changes](https://github.com/PatriceJiang/spidermonkey-69-ios-compile/compare/f909feaa59c4afbb36b09ef9a4e490682e5ddc43...master)
 
-## prepare enviroment
+Original source code from https://archive.mozilla.org/pub/firefox/releases/69.0b16/source/
 
-ref official documents
+## Prepare enviroment
 
-## run build script
+Ref official documents
 
-build `libjs_static.a`
+## Run build script
+
+Build lib `libjs_static.a`
 
 ```bash
 cd js/src/build-ios
@@ -19,7 +21,7 @@ cd js/src/build-ios
 make -j 16
 ```
 
-create `libmozglue.a`
+Create archive `libmozglue.a`
 
 ```bash
 ./link_mozglue.sh
